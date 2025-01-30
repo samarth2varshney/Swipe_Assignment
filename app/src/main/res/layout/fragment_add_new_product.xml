@@ -151,7 +151,9 @@
                         android:layout_marginRight="36dp"
                         android:background="@drawable/edit_text_background">
 
-                        <EditText
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:textSize="15dp"
                             android:id="@+id/editTextImageFileName"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

@@ -99,6 +99,7 @@ class AddNewProductFragment(listener: CardDialogListener) : BottomSheetDialogFra
         binding.addProductBack.setOnClickListener {
             mBottomSheetListener?.close()
         }
+
         binding.btnAddImage.setOnClickListener {
             getContent.launch("image/*")
         }
