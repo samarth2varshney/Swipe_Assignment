@@ -10,7 +10,7 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.example.swipeassignment.data.UploadWorker
+import com.example.swipeassignment.data.workers.UploadWorker
 import com.example.swipeassignment.data.models.Product
 import com.example.swipeassignment.data.repository.AppDatabase
 import com.example.swipeassignment.data.repository.ProductRepository
