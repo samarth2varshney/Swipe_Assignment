@@ -3,6 +3,7 @@ package com.example.swipeassignment.di
 import com.example.swipeassignment.data.repository.ProductRepository
 import com.example.swipeassignment.ui.viewmodels.ProductViewModel
 import com.example.swipeassignment.utils.RetrofitBuilder
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -18,5 +19,5 @@ val appModule = module {
     single { ProductRepository(get()) }
 
     // ViewModel
-    viewModel { ProductViewModel(get()) }
+    viewModel { ProductViewModel(get(),androidApplication()) }
 }

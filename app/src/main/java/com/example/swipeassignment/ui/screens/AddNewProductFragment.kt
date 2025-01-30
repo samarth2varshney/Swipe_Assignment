@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.swipeassignment.R
 import com.example.swipeassignment.data.models.Product
+import com.example.swipeassignment.data.repository.AppDatabase
 import com.example.swipeassignment.databinding.FragmentAddNewProductBinding
 import com.example.swipeassignment.ui.viewmodels.ProductViewModel
 import com.example.swipeassignment.utils.Resource
@@ -89,10 +90,8 @@ class AddNewProductFragment(listener: CardDialogListener) : BottomSheetDialogFra
             val tax = binding.editTextTaxRate.text.toString().toDoubleOrNull()
 
             if (validateInputs(productName, productType, price, tax)) {
-                val product = Product(null, price!!, productName, productType, tax!!)
-                val image = getImageMultipart() // Implement this function to get the MultipartBody.Part of the image
-
-                viewModel.addProduct(product, image)
+                val product = Product(price =  price!!,product_name =  productName, product_type =  productType, tax = tax!!, imageFilePath = getRealPathFromURI(selectedImageUri))
+                viewModel.addProduct(product, AppDatabase.getDatabase(requireContext()))
             }
         }
 
@@ -133,24 +132,6 @@ class AddNewProductFragment(listener: CardDialogListener) : BottomSheetDialogFra
 
 
         }
-    }
-
-
-    private fun getImageMultipart(): MultipartBody.Part? {
-
-        selectedImageUri?.let { imageUri ->
-            // Convert the image URI to a MultipartBody.Part
-
-            val imagedata = MultipartBody.Part.createFormData(
-                "files[]",
-                File(getRealPathFromURI(imageUri)).name,
-                File(getRealPathFromURI(imageUri)).asRequestBody("image/*".toMediaTypeOrNull())
-            )
-
-            return imagedata
-        }
-
-        return null
     }
 
     private fun validateInputs(
